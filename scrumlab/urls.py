@@ -18,12 +18,8 @@ from django.urls import path
 
 from jedzonko.views import IndexView, RecipeList
 
-
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view()),
-    path('recipe/list', RecipeList.as_view()),
+    path('recipe/list/', RecipeList.as_view()),
 ]
-
