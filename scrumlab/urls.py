@@ -26,3 +26,4 @@ urlpatterns = [
     path('', IndexView.as_view()),
     path('recipe/list', RecipeList.as_view()),
 ]
+
