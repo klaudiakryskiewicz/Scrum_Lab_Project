@@ -17,7 +17,15 @@ class IndexView(View):
         return render(request, "index.html", {'recipes': recipes, "actual_date": datetime.now()})
 
 
+
 class RecipeList(View):
 
     def get(self, request):
         return render(request, "app-recipes.html")
+
+
+class DashboardView(View):
+
+    def get(self, request):
+        recipes_num = Recipe.objects.all().count()
+        return render(request, "dashboard.html", {"recipes_num": recipes_num})
