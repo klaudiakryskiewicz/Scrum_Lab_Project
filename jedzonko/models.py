@@ -13,7 +13,7 @@ class Recipe(models.Model):
 
 class Plan(models.Model):
     name = models.CharField(max_length=255)
-    description = models.TextField
+    description = models.TextField()
     created = models.DateField(auto_now_add=True)
     recipes = models.ManyToManyField(Recipe, through="Recipeplan")
 
