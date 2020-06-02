@@ -29,3 +29,27 @@ class DashboardView(View):
     def get(self, request):
         recipes_num = Recipe.objects.all().count()
         return render(request, "dashboard.html", {"recipes_num": recipes_num})
+
+
+class PlansList(View):
+
+    def get(self, request):
+        return render(request, "app-schedules.html")
+
+
+class RecipeAdd(View):
+
+    def get(self, request):
+        return render(request, "app-add-recipe.html")
+
+
+class PlanAdd(View):
+
+    def get(self, request):
+        return render(request, "app-add-schedules.html")
+
+
+class AddRecipeToPlan(View):
+
+    def get(self, request):
+        return render(request, "app-schedules-meal-recipe.html")
