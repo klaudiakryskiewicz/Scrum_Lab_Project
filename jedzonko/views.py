@@ -38,6 +38,9 @@ class AddPlan(View):
     def post(self, request):
         name = request.POST['name']
         description = request.POST['description']
+        if name == '' or description == '':
+            komunikat = "wypełnij wszystkie pola"
+            return render(request, 'app-add-schedules.html', {'komunikat':komunikat})
         plan = Plan.objects.create(name=name, description=description)
         id = plan.id
         url = '/plan/' + str(id) + '/details'
