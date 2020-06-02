@@ -15,7 +15,7 @@ class Plan(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField
     created = models.DateField(auto_now_add=True)
-    recipes = models.ManyToManyField(through="Recipeplan")
+    recipes = models.ManyToManyField(Recipe, through="Recipeplan")
 
 
 # "zastanówcie się, czy nie lepiej zamienić to na enuma w Django"
