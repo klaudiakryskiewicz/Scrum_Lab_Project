@@ -14,7 +14,8 @@ class IndexView(View):
         # jak nie zrobię tego fora to pokazuje mi losową nazwę, losowe składniki i losowy opis XD
         for recipe in recipes:
             print(recipe.name, recipe.ingredients, recipe.description)
-        return render(request, "index.html", {'recipes': recipes})
+        return render(request, "index.html", {'recipes': recipes, "actual_date": datetime.now()})
+
 
 
 class RecipeList(View):
