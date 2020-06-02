@@ -1,7 +1,7 @@
 from datetime import datetime
 from random import sample
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 from jedzonko.models import Recipe, Plan
@@ -38,8 +38,10 @@ class AddPlan(View):
     def post(self, request):
         name = request.POST['name']
         description = request.POST['description']
-        print(name, description)
-        Plan.objects.create(name=name, description=description)
-        return render(request, "app-add-schedules.html")
+        plan = Plan.objects.create(name=name, description=description)
+        id = plan.id
+        url = '/plan/' + str(id) + '/details'
+        return redirect(url)
+
 
 
