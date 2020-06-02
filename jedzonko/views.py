@@ -30,11 +30,24 @@ class DashboardView(View):
         return render(request, "dashboard.html", {"recipes_num": recipes_num})
 
 
+
+class PlansList(View):
+
+    def get(self, request):
+        return render(request, "app-schedules.html")
+
+
+class RecipeAdd(View):
+
+    def get(self, request):
+        return render(request, "app-add-recipe.html")
+
 class AddPlan(View):
+
 
     def get(self, request):
         return render(request, "app-add-schedules.html")
-
+    
     def post(self, request):
         name = request.POST['name']
         description = request.POST['description']
@@ -47,4 +60,8 @@ class AddPlan(View):
         return redirect(url)
 
 
+class AddRecipeToPlan(View):
+
+    def get(self, request):
+        return render(request, "app-schedules-meal-recipe.html")
 
