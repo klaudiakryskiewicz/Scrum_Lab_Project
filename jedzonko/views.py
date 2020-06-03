@@ -1,6 +1,7 @@
 from datetime import datetime
 from random import sample
 
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.views import View
 
@@ -20,7 +21,12 @@ class IndexView(View):
 class RecipeList(View):
 
     def get(self, request):
-        return render(request, "app-recipes.html")
+        recipes = Recipe.objects.order_by('-votes', '-created')
+        paginator = Paginator(recipes, 50)
+
+        page = request.GET.get('page')
+        recipes = paginator.get_page(page)
+        return render(request, "app-recipes.html", {'recipes': recipes})
 
 
 class DashboardView(View):
@@ -28,7 +34,6 @@ class DashboardView(View):
     def get(self, request):
         recipes_num = Recipe.objects.all().count()
         return render(request, "dashboard.html", {"recipes_num": recipes_num})
-
 
 
 class PlansList(View):
@@ -42,18 +47,18 @@ class RecipeAdd(View):
     def get(self, request):
         return render(request, "app-add-recipe.html")
 
-class AddPlan(View):
 
+class AddPlan(View):
 
     def get(self, request):
         return render(request, "app-add-schedules.html")
-    
+
     def post(self, request):
         name = request.POST['name']
         description = request.POST['description']
         if name == '' or description == '':
             komunikat = "wypełnij wszystkie pola"
-            return render(request, 'app-add-schedules.html', {'komunikat':komunikat})
+            return render(request, 'app-add-schedules.html', {'komunikat': komunikat})
         plan = Plan.objects.create(name=name, description=description)
         id = plan.id
         url = '/plan/' + str(id) + '/'
