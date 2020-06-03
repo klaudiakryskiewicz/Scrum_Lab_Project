@@ -47,21 +47,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                        {% for meal in mon_meals %}
                             <tr class="d-flex">
-                                <td class="col-2">śniadanie</td>
-                                <td class="col-8">{{ breakfasts.0 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ breakfasts_ids.0 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
+                                <td class="col-2">{{ meal.meal_name }}</td>
+                                <td class="col-8">{{ meal.recipe.name }}</td>
+                                <td class="col-2"><a href="/recipe/{{ meal.recipe_id }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
                             </tr>
-                            <tr class="d-flex">
-                                <td class="col-2">obiad</td>
-                                <td class="col-8">{{ dinners.0 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ dinners_ids.0 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
-                            <tr class="d-flex">
-                                <td class="col-2">kolacja</td>
-                                <td class="col-8">{{ suppers.0 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ suppers_ids.0 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                     <table class="table">
@@ -73,21 +65,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                        {% for meal in tue_meals %}
                             <tr class="d-flex">
-                                <td class="col-2">śniadanie</td>
-                                <td class="col-8">{{ breakfasts.1}}</td>
-                                <td class="col-2"><a href="/receipe/{{ breakfasts_ids.1 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
+                                <td class="col-2">{{ meal.meal_name }}</td>
+                                <td class="col-8">{{ meal.recipe.name }}</td>
+                                <td class="col-2"><a href="/recipe/{{ meal.recipe_id }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
                             </tr>
-                            <tr class="d-flex">
-                                <td class="col-2">obiad</td>
-                                <td class="col-8">{{ dinners.1 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ dinners_ids.1 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
-                            <tr class="d-flex">
-                                <td class="col-2">kolacja</td>
-                                <td class="col-8">{{ suppers.1 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ suppers_ids.1 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                     <table class="table">
@@ -99,21 +83,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                        {% for meal in wed_meals %}
                             <tr class="d-flex">
-                                <td class="col-2">śniadanie</td>
-                                <td class="col-8">{{ breakfasts.2}}</td>
-                                <td class="col-2"><a href="/receipe/{{ breakfasts_ids.2 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
+                                <td class="col-2">{{ meal.meal_name }}</td>
+                                <td class="col-8">{{ meal.recipe.name }}</td>
+                                <td class="col-2"><a href="/recipe/{{ meal.recipe_id }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
                             </tr>
-                            <tr class="d-flex">
-                                <td class="col-2">obiad</td>
-                                <td class="col-8">{{ dinners.2 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ dinners_ids.2 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
-                            <tr class="d-flex">
-                                <td class="col-2">kolacja</td>
-                                <td class="col-8">{{ suppers.2 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ suppers_ids.2 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                     <table class="table">
@@ -125,21 +101,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                        {% for meal in thu_meals %}
                             <tr class="d-flex">
-                                <td class="col-2">śniadanie</td>
-                                <td class="col-8">{{ breakfasts.3 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ breakfasts_ids.3 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
+                                <td class="col-2">{{ meal.meal_name }}</td>
+                                <td class="col-8">{{ meal.recipe.name }}</td>
+                                <td class="col-2"><a href="/recipe/{{ meal.recipe_id }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
                             </tr>
-                            <tr class="d-flex">
-                                <td class="col-2">obiad</td>
-                                <td class="col-8">{{ dinners.3 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ dinners_ids.3 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
-                            <tr class="d-flex">
-                                <td class="col-2">kolacja</td>
-                                <td class="col-8">{{ suppers.3 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ suppers_ids.3 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                     <table class="table">
@@ -151,21 +119,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                        {% for meal in fri_meals %}
                             <tr class="d-flex">
-                                <td class="col-2">śniadanie</td>
-                                <td class="col-8">{{ breakfasts.4 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ breakfasts_ids.4 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
+                                <td class="col-2">{{ meal.meal_name }}</td>
+                                <td class="col-8">{{ meal.recipe.name }}</td>
+                                <td class="col-2"><a href="/recipe/{{ meal.recipe_id }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
                             </tr>
-                            <tr class="d-flex">
-                                <td class="col-2">obiad</td>
-                                <td class="col-8">{{ dinners.4 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ dinners_ids.4 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
-                            <tr class="d-flex">
-                                <td class="col-2">kolacja</td>
-                                <td class="col-8">{{ suppers.4 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ suppers_ids.4 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                     <table class="table">
@@ -177,21 +137,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                        {% for meal in sat_meals %}
                             <tr class="d-flex">
-                                <td class="col-2">śniadanie</td>
-                                <td class="col-8">{{ breakfasts.5}}</td>
-                                <td class="col-2"><a href="/receipe/{{ breakfasts_ids.5 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
+                                <td class="col-2">{{ meal.meal_name }}</td>
+                                <td class="col-8">{{ meal.recipe.name }}</td>
+                                <td class="col-2"><a href="/recipe/{{ meal.recipe_id }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
                             </tr>
-                            <tr class="d-flex">
-                                <td class="col-2">obiad</td>
-                                <td class="col-8">{{ dinners.5 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ dinners_ids.5 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
-                            <tr class="d-flex">
-                                <td class="col-2">kolacja</td>
-                                <td class="col-8">{{ suppers.5 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ suppers_ids.5 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                     <table class="table">
@@ -203,21 +155,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                        {% for meal in sun_meals %}
                             <tr class="d-flex">
-                                <td class="col-2">śniadanie</td>
-                                <td class="col-8">{{ breakfasts.6 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ breakfasts_ids.6 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
+                                <td class="col-2">{{ meal.meal_name }}</td>
+                                <td class="col-8">{{ meal.recipe.name }}</td>
+                                <td class="col-2"><a href="/recipe/{{ meal.recipe_id }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
                             </tr>
-                            <tr class="d-flex">
-                                <td class="col-2">obiad</td>
-                                <td class="col-8">{{ dinners.6 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ dinners_ids.6 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
-                            <tr class="d-flex">
-                                <td class="col-2">kolacja</td>
-                                <td class="col-8">{{ suppers.6 }}</td>
-                                <td class="col-2"><a href="/receipe/{{ suppers_ids.6 }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

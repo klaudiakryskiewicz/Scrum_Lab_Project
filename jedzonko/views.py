@@ -27,18 +27,20 @@ class DashboardView(View):
 
     def get(self, request):
         last_plan = Plan.objects.latest("id")
-        breakfasts = Recipeplan.objects.filter(plan_id=last_plan.id).filter(meal_name__icontains="breakfast").values_list("recipe__name", flat=True)
-        dinners = Recipeplan.objects.filter(plan_id=last_plan.id).filter(meal_name__icontains="dinner").values_list("recipe__name", flat=True)
-        suppers = Recipeplan.objects.filter(plan_id=last_plan.id).filter(meal_name__icontains="supper").values_list("recipe__name", flat=True)
-        breakfasts_ids = Recipeplan.objects.filter(plan_id=last_plan.id).filter(meal_name__icontains="breakfast").values_list("recipe_id", flat=True)
-        dinners_ids = Recipeplan.objects.filter(plan_id=last_plan.id).filter(meal_name__icontains="dinner").values_list("recipe_id", flat=True)
-        suppers_ids = Recipeplan.objects.filter(plan_id=last_plan.id).filter(meal_name__icontains="supper").values_list("recipe_id", flat=True)
-        days = Dayname.objects.all()
+        mon_meals = Recipeplan.objects.filter(plan_id=last_plan.id).filter(day_name__order=1).order_by("order")
+        tue_meals = Recipeplan.objects.filter(plan_id=last_plan.id).filter(day_name__order=2).order_by("order")
+        wed_meals = Recipeplan.objects.filter(plan_id=last_plan.id).filter(day_name__order=3).order_by("order")
+        thu_meals = Recipeplan.objects.filter(plan_id=last_plan.id).filter(day_name__order=4).order_by("order")
+        fri_meals = Recipeplan.objects.filter(plan_id=last_plan.id).filter(day_name__order=5).order_by("order")
+        sat_meals = Recipeplan.objects.filter(plan_id=last_plan.id).filter(day_name__order=6).order_by("order")
+        sun_meals = Recipeplan.objects.filter(plan_id=last_plan.id).filter(day_name__order=7).order_by("order")
+        days = Dayname.objects.all().order_by("id")
         recipes_num = Recipe.objects.all().count()
         return render(request, "dashboard.html", {"recipes_num": recipes_num, "last_plan": last_plan,
-                                                  "days": days, "breakfasts": breakfasts,
-                                                  "dinners": dinners, "suppers": suppers, "breakfasts_ids": breakfasts_ids,
-                                                  "dinners_ids": dinners_ids, "suppers_ids": suppers_ids})
+                                                  "days": days, "mon_meals": mon_meals, "tue_meals": tue_meals,
+                                                  "wed_meals": wed_meals, "thu_meals": thu_meals,
+                                                  "fri_meals": fri_meals,
+                                                  "sat_meals": sat_meals, "sun_meals": sun_meals, })
 
 
 class PlansList(View):
