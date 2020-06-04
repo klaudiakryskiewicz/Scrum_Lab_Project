@@ -30,7 +30,7 @@
                         </div>
                         <div class="alert-item alert-light">
                             <i class="far icon-calendar fa-calendar-alt"></i>
-                            <span class="font-weight-bold">Liczba planów: 1</span>
+                            <span class="font-weight-bold">Liczba planów: {{ plans_num }}</span>
                         </div>
                     </div>
                 </div>
@@ -38,16 +38,17 @@
                     <h2 class="dashboard-content-title">
                         <span>Ostatnio dodany plan:</span> {{ last_plan.name }}
                     </h2>
+                {% for key, value in meals.items %}
                     <table class="table">
                         <thead>
                             <tr class="d-flex">
-                                <th class="col-2">{{ days.0.name }}</th>
+                                <th class="col-2">{{ key }}</th>
                                 <th class="col-8"></th>
                                 <th class="col-2"></th>
                             </tr>
                         </thead>
                         <tbody>
-                        {% for meal in mon_meals %}
+                        {% for meal in value %}
                             <tr class="d-flex">
                                 <td class="col-2">{{ meal.meal_name }}</td>
                                 <td class="col-8">{{ meal.recipe.name }}</td>
@@ -56,113 +57,6 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                    <table class="table">
-                        <thead>
-                            <tr class="d-flex">
-                                <th class="col-2">{{ days.1.name }}</th>
-                                <th class="col-8"></th>
-                                <th class="col-2"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {% for meal in tue_meals %}
-                            <tr class="d-flex">
-                                <td class="col-2">{{ meal.meal_name }}</td>
-                                <td class="col-8">{{ meal.recipe.name }}</td>
-                                <td class="col-2"><a href="/recipe/{{ meal.recipe_id }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <table class="table">
-                        <thead>
-                            <tr class="d-flex">
-                                <th class="col-2">{{ days.2.name }}</th>
-                                <th class="col-8"></th>
-                                <th class="col-2"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {% for meal in wed_meals %}
-                            <tr class="d-flex">
-                                <td class="col-2">{{ meal.meal_name }}</td>
-                                <td class="col-8">{{ meal.recipe.name }}</td>
-                                <td class="col-2"><a href="/recipe/{{ meal.recipe_id }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <table class="table">
-                        <thead>
-                            <tr class="d-flex">
-                                <th class="col-2">{{ days.3.name }}</th>
-                                <th class="col-8"></th>
-                                <th class="col-2"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {% for meal in thu_meals %}
-                            <tr class="d-flex">
-                                <td class="col-2">{{ meal.meal_name }}</td>
-                                <td class="col-8">{{ meal.recipe.name }}</td>
-                                <td class="col-2"><a href="/recipe/{{ meal.recipe_id }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <table class="table">
-                        <thead>
-                            <tr class="d-flex">
-                                <th class="col-2">{{ days.4.name }}</th>
-                                <th class="col-8"></th>
-                                <th class="col-2"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {% for meal in fri_meals %}
-                            <tr class="d-flex">
-                                <td class="col-2">{{ meal.meal_name }}</td>
-                                <td class="col-8">{{ meal.recipe.name }}</td>
-                                <td class="col-2"><a href="/recipe/{{ meal.recipe_id }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <table class="table">
-                        <thead>
-                            <tr class="d-flex">
-                                <th class="col-2">{{ days.5.name }}</th>
-                                <th class="col-8"></th>
-                                <th class="col-2"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {% for meal in sat_meals %}
-                            <tr class="d-flex">
-                                <td class="col-2">{{ meal.meal_name }}</td>
-                                <td class="col-8">{{ meal.recipe.name }}</td>
-                                <td class="col-2"><a href="/recipe/{{ meal.recipe_id }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <table class="table">
-                        <thead>
-                            <tr class="d-flex">
-                                <th class="col-2">{{ days.6.name }}</th>
-                                <th class="col-8"></th>
-                                <th class="col-2"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {% for meal in sun_meals %}
-                            <tr class="d-flex">
-                                <td class="col-2">{{ meal.meal_name }}</td>
-                                <td class="col-8">{{ meal.recipe.name }}</td>
-                                <td class="col-2"><a href="/recipe/{{ meal.recipe_id }}/"><button type="button" class="btn btn-primary rounded-0">Szczegóły</button></a></td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                {% endfor %}
                 </div>
 {% endblock content %}
