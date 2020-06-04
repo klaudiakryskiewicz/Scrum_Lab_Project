@@ -1,6 +1,7 @@
 from datetime import datetime
 from random import sample
 
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.views import View
 
@@ -20,7 +21,12 @@ class IndexView(View):
 class RecipeList(View):
 
     def get(self, request):
-        return render(request, "app-recipes.html")
+        recipes = Recipe.objects.order_by('-votes', '-created')
+        paginator = Paginator(recipes, 50)
+
+        page = request.GET.get('page')
+        recipes = paginator.get_page(page)
+        return render(request, "app-recipes.html", {'recipes': recipes})
 
 
 class DashboardView(View):
@@ -41,7 +47,6 @@ class DashboardView(View):
                                                   "wed_meals": wed_meals, "thu_meals": thu_meals,
                                                   "fri_meals": fri_meals,
                                                   "sat_meals": sat_meals, "sun_meals": sun_meals, })
-
 
 class PlansList(View):
 
@@ -68,7 +73,7 @@ class AddPlan(View):
             return render(request, 'app-add-schedules.html', {'komunikat': komunikat})
         plan = Plan.objects.create(name=name, description=description)
         id = plan.id
-        url = '/plan/' + str(id) + '/details'
+        url = '/plan/' + str(id) + '/'
         return redirect(url)
 
 
@@ -76,3 +81,11 @@ class AddRecipeToPlan(View):
 
     def get(self, request):
         return render(request, "app-schedules-meal-recipe.html")
+
+
+class RecipeDetails(View):
+
+    def get(self, request, id):
+        recipe = Recipe.objects.get(pk=id)
+        return render(request, "app-recipe-details.html", {"recipe": recipe})
+
