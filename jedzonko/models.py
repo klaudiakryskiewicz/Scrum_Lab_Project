@@ -17,7 +17,6 @@ class Plan(models.Model):
     created = models.DateField(auto_now_add=True)
     recipes = models.ManyToManyField(Recipe, through="Recipeplan")
 
-
 # "zastanówcie się, czy nie lepiej zamienić to na enuma w Django"
 # - na razie zrobiłam dayname, jak ktoś wie co to enuma to możemy zmienić :D
 
@@ -32,3 +31,7 @@ class Recipeplan(models.Model):
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
     order = models.IntegerField()
     day_name = models.ForeignKey(Dayname, on_delete=models.CASCADE) #nie mam pewności co do relacji tutaj
+
+
+
+

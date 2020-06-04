@@ -45,10 +45,15 @@ class DashboardView(View):
                       {"recipes_num": recipes_num, "plans_num": plans_num, "last_plan": last_plan, "meals": meals})
 
 
-class PlansList(View):
+class SchedulesListView(View):
 
     def get(self, request):
-        return render(request, "app-schedules.html")
+        schedules = Plan.objects.all().order_by('-name')
+        paginator = Paginator(schedules, 50)
+
+        page = request.GET.get('page')
+        schedules = paginator.get_page(page)
+        return render(request, "app-schedules.html", {'schedules': schedules})
 
 
 class RecipeAdd(View):
