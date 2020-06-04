@@ -61,7 +61,7 @@ class AddPlan(View):
             return render(request, 'app-add-schedules.html', {'komunikat': komunikat})
         plan = Plan.objects.create(name=name, description=description)
         id = plan.id
-        url = '/plan/' + str(id) + '/details'
+        url = '/plan/' + str(id) + '/'
         return redirect(url)
 
 
@@ -69,3 +69,10 @@ class AddRecipeToPlan(View):
 
     def get(self, request):
         return render(request, "app-schedules-meal-recipe.html")
+
+
+class RecipeDetails(View):
+
+    def get(self, request, id):
+        recipe = Recipe.objects.get(pk=id)
+        return render(request, "app-recipe-details.html", {"recipe": recipe})
