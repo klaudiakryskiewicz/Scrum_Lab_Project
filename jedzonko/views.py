@@ -97,4 +97,5 @@ class RecipeDetails(View):
         elif request.POST['submit'] == 'Nie lubię tego przepisu':
             recipe.votes -= 1
         recipe.save()
-        return render(request, "app-recipe-details.html", {"recipe": recipe})
+        url = "/recipe/" + str(id) + "/"
+        return redirect(url)
