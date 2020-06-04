@@ -55,8 +55,8 @@ class SchedulesListView(View):
         schedules = Plan.objects.all().order_by('-name')
         paginator = Paginator(schedules, 50)
 
-        schedulesview = request.GET.get('schedulesview')
-        schedules = paginator.get_page(schedulesview)
+        page = request.GET.get('page')
+        schedules = paginator.get_page(page)
         return render(request, "app-schedules.html", {'schedules': schedules})
 
 
