@@ -61,6 +61,24 @@ class RecipeAdd(View):
     def get(self, request):
         return render(request, "app-add-recipe.html")
 
+    def post(self, request):
+        name = request.POST['name']
+        description = request.POST['description']
+        preparation_time = request.POST['preparation_time']
+        preparation_description = request.POST['preparation_description']
+        ingredients = request.POST['ingredients']
+        if name == '' or description == '' or preparation_time == '' or preparation_description == '' or ingredients == '' :
+            komunikat = "wypełnij wszystkie pola"
+            return render(request, 'app-add-schedules.html', {'komunikat': komunikat})
+        recipe = Recipe.objects.create(name=name, description=description, preparation_time=preparation_time, preparation_description=preparation_description, ingredients=ingredients )
+        id = recipe.id
+        url = '/recipe/' + str(id) + '/'
+        return redirect(url)
+
+
+
+
+
 
 class AddPlan(View):
 
