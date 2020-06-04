@@ -89,3 +89,10 @@ class RecipeDetails(View):
         recipe = Recipe.objects.get(pk=id)
         return render(request, "app-recipe-details.html", {"recipe": recipe})
 
+    def post(self, request, id):
+        recipe = Recipe.objects.get(pk=id)
+        recipe.votes +=1
+        recipe.save()
+        return render(request, "app-recipe-details.html", {"recipe": recipe})
+
+
