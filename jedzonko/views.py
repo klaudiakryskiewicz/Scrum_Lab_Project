@@ -100,7 +100,25 @@ class AddPlan(View):
 class AddRecipeToPlan(View):
 
     def get(self, request):
-        return render(request, "app-schedules-meal-recipe.html")
+        allPlans = Plan.objects.all().order_by('-name')
+        allRecipes = Recipe.objects.all().order_by('-name')
+        return render(request, "app-schedules-meal-recipe.html", {'allPlans': allPlans, 'allRecipes': allRecipes})
+
+    def post(self, request):
+        plan = request.POST['plan']
+        meal_name = request.POST['meal_name']
+        order = request.POST['order']
+        recipe = request.POST['recipe']
+        day_name = request.POST['day_name']
+        if meal_name == '' or order == '' or day_name == '' or plan == '' or recipe == '':
+            komunikat = "wypełnij wszystkie pola"
+            return render(request, "app-schedules-meal-recipe.html", {'komunikat': komunikat})
+        recto = Recipeplan.objects.create(meal_name=meal_name, order=order, day_name_id=day_name, plan_id=plan,
+                                                 recipe_id=recipe)
+        id = recto.id
+        url = '/plan/add-recipe/' + str(id) + '/'
+        return redirect(url)
+
 
 
 class RecipeDetails(View):

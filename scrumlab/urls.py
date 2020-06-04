@@ -32,4 +32,5 @@ urlpatterns = [
     path('plan/add-recipe/', AddRecipeToPlan.as_view()),
     path('recipe/<int:id>/', RecipeDetails.as_view()),
     path('plan/<int:id>/', PlanDetails.as_view()),
+
 ]

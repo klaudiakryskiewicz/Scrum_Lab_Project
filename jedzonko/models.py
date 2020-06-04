@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 
 
 class Recipe(models.Model):
@@ -31,7 +32,15 @@ class Recipeplan(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
     order = models.IntegerField()
-    day_name = models.ForeignKey(Dayname, on_delete=models.CASCADE) #nie mam pewności co do relacji tutaj
+    day_name = models.ForeignKey(Dayname, on_delete=models.CASCADE)
+
+    #nie mam pewności co do relacji tutaj
+
+
+
+
+
+
 
 
 
