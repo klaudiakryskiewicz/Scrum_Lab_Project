@@ -48,6 +48,7 @@ class DashboardView(View):
                                                   "fri_meals": fri_meals,
                                                   "sat_meals": sat_meals, "sun_meals": sun_meals, })
 
+
 class PlansList(View):
 
     def get(self, request):
@@ -91,8 +92,9 @@ class RecipeDetails(View):
 
     def post(self, request, id):
         recipe = Recipe.objects.get(pk=id)
-        recipe.votes +=1
+        if request.POST['submit'] == 'Polub przepis':
+            recipe.votes += 1
+        elif request.POST['submit'] == 'Nie lubię tego przepisu':
+            recipe.votes -= 1
         recipe.save()
         return render(request, "app-recipe-details.html", {"recipe": recipe})
-
-
