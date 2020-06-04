@@ -48,6 +48,7 @@ class DashboardView(View):
                                                   "fri_meals": fri_meals,
                                                   "sat_meals": sat_meals, "sun_meals": sun_meals, })
 
+
 class PlansList(View):
 
     def get(self, request):
@@ -89,3 +90,14 @@ class RecipeDetails(View):
         recipe = Recipe.objects.get(pk=id)
         return render(request, "app-recipe-details.html", {"recipe": recipe})
 
+
+class PlanDetails(View):
+
+    def get(self, request, id):
+        plan = Plan.objects.get(pk=id)
+        meals = {}
+        days = Dayname.objects.order_by('order')
+        for i in range(1, 8):
+            meals.update(
+                {days[i - 1].name: Recipeplan.objects.filter(plan_id=id).filter(day_name__order=i).order_by("order")})
+        return render(request, "app-details-schedules.html", {"plan": plan, "meals": meals})
