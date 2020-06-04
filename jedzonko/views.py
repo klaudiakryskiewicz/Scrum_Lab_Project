@@ -90,6 +90,16 @@ class RecipeDetails(View):
         recipe = Recipe.objects.get(pk=id)
         return render(request, "app-recipe-details.html", {"recipe": recipe})
 
+    def post(self, request, id):
+        recipe = Recipe.objects.get(pk=id)
+        if request.POST['submit'] == 'Polub przepis':
+            recipe.votes += 1
+        elif request.POST['submit'] == 'Nie lubię tego przepisu':
+            recipe.votes -= 1
+        recipe.save()
+        url = "/recipe/" + str(id) + "/"
+        return redirect(url)
+
 
 class PlanDetails(View):
 
@@ -101,3 +111,4 @@ class PlanDetails(View):
             meals.update(
                 {days[i - 1].name: Recipeplan.objects.filter(plan_id=id).filter(day_name__order=i).order_by("order")})
         return render(request, "app-details-schedules.html", {"plan": plan, "meals": meals})
+
