@@ -18,14 +18,14 @@
             <tr class="d-flex">
                 <th scope="row" class="col-2">Nazwa Przepisu</th>
                 <td class="col-7">
-                    <input name="name" class="form-control" id="recipeName" placeholder="Nazwa przepisu" value={{ recipe.name }}>
+                    <input name="name" class="form-control" id="recipeName" placeholder="Nazwa przepisu" value="{{ recipe.name }}">
                 </td>
             </tr>
             <tr class="d-flex">
                 <th scope="row" class="col-2">Opis przepisu</th>
                 <td class="col-7">
                     <input name="description" class="form-control" id="recipeDescription" placeholder="Opis przepisu"
-                           value={{ recipe.description }}>
+                           value="{{ recipe.description }}">
                 </td>
             </tr>
             <tr class="d-flex">
@@ -60,5 +60,6 @@
         </div>
     </div>
 </form>
+{{ komunikat }}
 </div>
 {% endblock content %}

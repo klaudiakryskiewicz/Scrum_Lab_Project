@@ -86,6 +86,25 @@ class RecipeModify(View):
         except ObjectDoesNotExist:
             return HttpResponseNotFound('<h1>Page not found</h1>')
 
+    def post(self, request, id):
+        recipe = Recipe.objects.get(pk=id)
+        name = request.POST.get('name')
+        description = request.POST.get('description')
+        preparation_time = request.POST['preparation_time']
+        preparation_description = request.POST['preparation_description']
+        ingredients = request.POST['ingredients']
+        if name == '' or description == '' or preparation_time == '' or preparation_description == '' or ingredients == '' :
+            komunikat = "Wypełnij poprawnie wszystkie pola"
+            return render(request, 'app-edit-recipe.html', {'komunikat': komunikat, "recipe": recipe})
+        recipe.name = name
+        recipe.description = description
+        recipe.preparation_time = preparation_time
+        recipe.preparation_description = preparation_description
+        recipe.ingredients = ingredients
+        recipe.save()
+        return redirect('/recipe/list/')
+
+
 
 
 
