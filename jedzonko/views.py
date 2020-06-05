@@ -2,9 +2,10 @@ from datetime import datetime
 from random import sample
 
 from django.core.paginator import Paginator
+from django.http import HttpResponseNotFound
 from django.shortcuts import render, redirect
 from django.views import View
-
+from django.core.exceptions import ObjectDoesNotExist
 from jedzonko.models import Recipe, Plan, Recipeplan, Dayname
 
 
@@ -75,6 +76,15 @@ class RecipeAdd(View):
         url = '/recipe/' + str(id) + '/'
         return redirect(url)
 
+
+class RecipeModify(View):
+
+    def get(self, request, id):
+        try:
+            recipe = Recipe.objects.get(pk=id)
+            return render(request, "app-edit-recipe.html", {'recipe': recipe})
+        except ObjectDoesNotExist:
+            return HttpResponseNotFound('<h1>Page not found</h1>')
 
 
 
