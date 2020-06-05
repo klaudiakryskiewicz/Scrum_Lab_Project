@@ -68,10 +68,11 @@ class RecipeAdd(View):
         preparation_time = request.POST['preparation_time']
         preparation_description = request.POST['preparation_description']
         ingredients = request.POST['ingredients']
-        if name == '' or description == '' or preparation_time == '' or preparation_description == '' or ingredients == '' :
+        if name == '' or description == '' or preparation_time == '' or preparation_description == '' or ingredients == '':
             komunikat = "wypełnij wszystkie pola"
             return render(request, 'app-add-schedules.html', {'komunikat': komunikat})
-        recipe = Recipe.objects.create(name=name, description=description, preparation_time=preparation_time, preparation_description=preparation_description, ingredients=ingredients )
+        recipe = Recipe.objects.create(name=name, description=description, preparation_time=preparation_time,
+                                       preparation_description=preparation_description, ingredients=ingredients)
         id = recipe.id
         url = '/recipe/' + str(id) + '/'
         return redirect(url)
@@ -86,8 +87,19 @@ class RecipeModify(View):
         except ObjectDoesNotExist:
             return HttpResponseNotFound('<h1>Page not found</h1>')
 
-
-
+    def post(self, request, id):
+        recipe = Recipe.objects.filter(pk=id)  # update z 99 linii nie działa na get
+        name = request.POST['name']
+        description = request.POST['description']
+        preparation_time = request.POST['preparation_time']
+        preparation_description = request.POST['preparation_description']
+        ingredients = request.POST['ingredients']
+        if name == '' or description == '' or preparation_time == '' or preparation_description == '' or ingredients == '':
+            komunikat = "Wypełnij poprawnie wszystkie pola"
+            return render(request, 'app-edit-recipe.html', {'komunikat': komunikat, "recipe": recipe[0]})
+        recipe.update(name=name, description=description, preparation_time=preparation_time,
+                      preparation_description=preparation_description, ingredients=ingredients)
+        return redirect('/recipe/list/')
 
 
 class AddPlan(View):
@@ -140,4 +152,3 @@ class PlanDetails(View):
             meals.update(
                 {days[i - 1].name: Recipeplan.objects.filter(plan_id=id).filter(day_name__order=i).order_by("order")})
         return render(request, "app-details-schedules.html", {"plan": plan, "meals": meals})
-
