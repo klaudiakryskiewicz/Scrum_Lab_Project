@@ -1,5 +1,6 @@
 from datetime import datetime
 from random import sample
+from django.http import HttpResponse
 
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
@@ -113,11 +114,12 @@ class AddRecipeToPlan(View):
         if meal_name == '' or order == '' or day_name == '' or plan == '' or recipe == '':
             komunikat = "wypełnij wszystkie pola"
             return render(request, "app-schedules-meal-recipe.html", {'komunikat': komunikat})
-        recto = Recipeplan.objects.create(meal_name=meal_name, order=order, day_name_id=day_name, plan_id=plan,
+        Recipeplan.objects.create(meal_name=meal_name, order=order, day_name_id=day_name, plan_id=plan,
                                                  recipe_id=recipe)
-        id = recto.id
-        url = '/plan/add-recipe/' + str(id) + '/'
-        return redirect(url)
+
+        return HttpResponse('Przepis został dodany do planu')
+    # Do modyfyfikacji w ZAD git9.2
+
 
 
 

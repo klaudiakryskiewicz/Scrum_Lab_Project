@@ -8,10 +8,11 @@ class Recipe(models.Model):
     description = models.TextField()
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now_add=True)
-    preparation_time = models.IntegerField(default='')
+    preparation_time = models.IntegerField(default=0)
     preparation_description = models.TextField(default="")
     votes = models.IntegerField(default=0)
 
+#Poprawione preparation_time wartosć default = 0 zamiast =""
 
 class Plan(models.Model):
     name = models.CharField(max_length=255)
