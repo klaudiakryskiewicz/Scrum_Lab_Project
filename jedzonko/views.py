@@ -71,7 +71,7 @@ class RecipeAdd(View):
         ingredients = request.POST['ingredients']
         if name == '' or description == '' or preparation_time == '' or preparation_description == '' or ingredients == '':
             komunikat = "wypełnij wszystkie pola"
-            return render(request, 'app-add-schedules.html', {'komunikat': komunikat})
+            return render(request, 'app-add-recipe.html', {'komunikat': komunikat})
         recipe = Recipe.objects.create(name=name, description=description, preparation_time=preparation_time,
                                        preparation_description=preparation_description, ingredients=ingredients)
         id = recipe.id
@@ -143,6 +143,7 @@ class AddRecipeToPlan(View):
         return redirect(url)
 
 
+
 class RecipeDetails(View):
 
     def get(self, request, id):
@@ -170,3 +171,21 @@ class PlanDetails(View):
             meals.update(
                 {days[i - 1].name: Recipeplan.objects.filter(plan_id=id).filter(day_name__order=i).order_by("order")})
         return render(request, "app-details-schedules.html", {"plan": plan, "meals": meals})
+
+class PlanModify(View):
+
+    def get(self, request, id):
+        try:
+            plan = Plan.objects.get(pk=id)
+            return render(request, "app-edit-schedules.html", {'plan': plan})
+        except ObjectDoesNotExist:
+            return HttpResponseNotFound('<h1>Page not found</h1>')
+
+    def post(self, request, id):
+        plan = Plan.objects.filter(pk=id)
+        name = request.POST['name']
+        description = request.POST['description']
+        if name == '' or description == '':
+            komunikat = "Wypełnij poprawnie wszystkie pola"
+            return render(request, 'app-edit-schedules.html', {'komunikat': komunikat, "plan": plan[0]})
+        plan.update(name=name, description=description)
