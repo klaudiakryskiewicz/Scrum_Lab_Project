@@ -137,11 +137,10 @@ class AddRecipeToPlan(View):
             komunikat = "wypełnij wszystkie pola"
             return render(request, "app-schedules-meal-recipe.html", {'komunikat': komunikat})
         recipeplan = Recipeplan.objects.create(meal_name=meal_name, order=order, day_name_id=day_name, plan_id=plan,
-                                               recipe_id=recipe)
+                                  recipe_id=recipe)
         id = recipeplan.plan_id
         url = '/plan/' + str(id) + '/'
         return redirect(url)
-
 
 
 

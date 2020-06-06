@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField()),
                 ('created', models.DateField(auto_now_add=True)),
                 ('updated', models.DateField(auto_now_add=True)),
-                ('preparation_time', models.IntegerField()),
+                ('preparation_time', models.IntegerField(default=0)),
                 ('preparation_description', models.TextField(default='')),
                 ('votes', models.IntegerField(default=0)),
             ],
