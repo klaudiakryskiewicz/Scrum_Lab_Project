@@ -2,36 +2,25 @@
 
 # ScrumLab Python
 
-## Czym jest ScrumLab?
+## ScrumLab
 
-ScrumLab to projekt, którego celem jest nauczenie Cię pracy w zespole programistów. Symuluje on realne zadania
-w projekcie aplikacji webowej. Podczas tego tygodnia będziesz uczestniczyć w codziennych spotkaniach, rozwiązywać 
-problemy, robić *code review* i integrować swój kod z kodem kolegów.
+ScrumLab is a CodersLab course module, which purpose is to teach how to work in a programmists' team. It is a simulation of web application development process in scrum methodology - it involves daily meetings, code reviews, working with Github branches.
 
-## Opis projektu
+## Description
 
-Pani Maria Iksińska napisała książkę kucharską, która stała się bestsellerem na rynku książek kucharskich w Polsce i zwróciła się do nas z prośba o przygotowanie dla jej czytelników aplikacji do planowania posiłków. Książka Pani Iksińskiej promuje zdrowe odżywianie i podkreśla jak ważną rolę odgrywa w nim planowanie posiłków. Chce zacząć przeprowadzać w całym kraju warsztaty, na których będzie uczyć uczestników planowania posiłków.
+The purpose of the project, was to develop a web app, which would help users keep a healthy and balanced diet.
 
-Pani Maria chce rozwijać swój biznes, a do zrealizowania swoich celów potrzebuje strony-wizytówki oraz prostej aplikacji do planowania posiłków.
-
-Przed przystąpieniem do pracy przeczytaj poniższe wskazówki
-
-
-
-## Plan tego repozytorium
-
-* `scrumlab` – katalog z projektem Django. Znajdują się w nim pliki 
-  - `settings.py` – ustawienia projektu,
-  - `urls.py` – dane URL-i,
-  - `local_settings.py.example` – ustawienia lokalne; po szczegóły zajrzyj do rozdziału **Konfiguracja projektu**,
-* `jedzonko` – katalog aplikacji Django, nad którą będziesz pracował.
-* `static` – katalog z plikami statycznymi; po szczegóły zajrzyj do rozdziału **Konfiguracja projektu**
+### App Jedzonko allows:
+* adding and modifying recipes
+* displaying list of recipes
+* creating, displaying and modifying diet plans
+* voting for recipes (liking/disliking)
 
 
+## Technologies:
+* Python
+* Django
+* HTML5/CSS3
+* PostgreSQL
 
-    landing page, który ma zachęcać do skorzystania z aplikacji, wyświetlający podstawowe informacje o projekcie,
-    aplikację przeglądarkową, która umożliwia:
-        dodawanie i modyfikowanie przepisów,
-        wyświetlanie listy przepisów,
-        tworzenie, wyświetlanie i modyfikowanie harmonogramu żywienia,
-        głosowanie na przepisy (podoba mi się / nie podoba mi się).
+
